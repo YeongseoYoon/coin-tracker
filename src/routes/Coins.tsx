@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
@@ -70,7 +69,7 @@ function Coins() {
       setLoading(false);
     })();
   }, []);*/
-  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
+  const { isLoading, data } = useQuery(["allCoins"], fetchCoins);
   return (
     <Container>
       <Header>
@@ -80,7 +79,7 @@ function Coins() {
         <Loader>Loading...</Loader>
       ) : (
         <CoinsList>
-          {data?.slice(0, 100).map((coin) => (
+          {data?.slice(0, 100).map((coin: ICoin) => (
             <Coin key={coin.id}>
               <Link
                 to={{
