@@ -5,6 +5,7 @@ import {
   useParams,
   useRouteMatch,
 } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Chart from "./Chart";
@@ -55,6 +56,18 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const Home = styled(Link)`
+  padding: 10px 5px;
+  margin: 100px 0px;
+  font-size: 24px;
+  &:hover {
+    font-size: 27px;
+    font-weight: bold;
+    -webkit-animation: ease-in-out 2s both;
+    animation: ease-in-out 2s both;
+  }
 `;
 
 const Tabs = styled.div`
@@ -158,11 +171,17 @@ function Coin() {
   const loading = infoLoading || tickersLoading;
   return (
     <Container>
+      <Helmet>
+        <title>
+          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+        </title>
+      </Helmet>
       <Header>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
       </Header>
+      <Home to="/">🪙Home</Home>
       {loading ? (
         <Loader>Loading...</Loader>
       ) : (
@@ -177,8 +196,8 @@ function Coin() {
               <span>${infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Open Source:</span>
-              <span>{infoData?.open_source ? "Yes" : "No"}</span>
+              <span>Price:</span>
+              <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>
