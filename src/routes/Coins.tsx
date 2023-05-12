@@ -17,10 +17,11 @@ const Header = styled.header`
 `;
 const CoinsList = styled.ul``;
 const Coin = styled.li`
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.cardBgColor};
+  color: ${(props) => props.theme.textColor};
   border-radius: 15px;
   margin-bottom: 10px;
+  border: 1px solid white;
   a {
     display: flex;
     align-items: center;
@@ -49,6 +50,16 @@ const Img = styled.img`
   margin-right: 10px;
 `;
 
+const ThemeBtn = styled.button`
+  width: 60px;
+  height: 20px;
+  color: white;
+  border: none;
+  background-color: #1685ec;
+  cursor: pointer;
+  border-radius: 10px;
+`;
+
 interface ICoin {
   id: string;
   name: string;
@@ -58,7 +69,11 @@ interface ICoin {
   is_active: boolean;
   type: string;
 }
-function Coins() {
+interface ICoinsProps {
+  toggleDark: () => void;
+}
+
+function Coins({ toggleDark }: ICoinsProps) {
   /*
   const [coins, setCoins] = useState<CoinInterface[]>([]);
   const [loading, setLoading] = useState(true);
@@ -78,6 +93,7 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>코인</Title>
+        <ThemeBtn onClick={toggleDark}>Theme</ThemeBtn>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
