@@ -12,7 +12,7 @@ import Chart from "./Chart";
 import Price from "./Price";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
-import { IPriceDetail, ICoinDetail, RouteParams } from "../atoms";
+import { IPriceDetail, ICoinDetail } from "../atoms";
 
 const Overview = styled.div`
   display: flex;
@@ -92,6 +92,9 @@ const Tab = styled.span<{ isActive: boolean }>`
     padding: 7px 0px;
   }
 `;
+interface RouteParams {
+  coinId: string;
+}
 
 interface RouteState {
   name: string;

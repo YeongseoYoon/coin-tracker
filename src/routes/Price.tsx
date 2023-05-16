@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoinTickers } from "../api";
 import { useParams } from "react-router-dom";
-import { IPriceDetail, RouteParams } from "../atoms";
+import { IPriceDetail } from "../atoms";
 import styled from "styled-components";
 
 const Section = styled.section`
@@ -17,6 +17,10 @@ const PriceSection = styled.div`
   border-radius: 15px;
   text-align: center;
 `;
+
+interface RouteParams {
+  coinId: string;
+}
 
 function Price() {
   const { coinId } = useParams<RouteParams>();

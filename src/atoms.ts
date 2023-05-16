@@ -56,10 +56,6 @@ export interface IPriceDetail {
   };
 }
 
-export interface RouteParams {
-  coinId: string;
-}
-
 export const isDarkAtom = atom({
   key: "isDark",
   default: false,
