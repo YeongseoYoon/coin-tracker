@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoinTickers } from "../api";
 import { useParams } from "react-router-dom";
-import { PriceData } from "../atoms";
+import { IPriceDetail, RouteParams } from "../atoms";
 import styled from "styled-components";
 
 const Section = styled.section`
@@ -19,11 +19,10 @@ const PriceSection = styled.div`
 `;
 
 function Price() {
-  const { coinId } = useParams() as { coinId: string };
-  const { isLoading, data } = useQuery<PriceData>({
-    queryKey: ["priceTap", coinId],
-    queryFn: () => fetchCoinTickers(coinId),
-  });
+  const { coinId } = useParams<RouteParams>();
+  const { isLoading, data } = useQuery<IPriceDetail>(["tickers", coinId], () =>
+    fetchCoinTickers(coinId)
+  );
 
   return (
     <>

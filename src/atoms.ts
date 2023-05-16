@@ -22,7 +22,7 @@ export interface ICoinDetail {
   last_data_at: string;
 }
 
-export interface PriceData {
+export interface IPriceDetail {
   id: string;
   name: string;
   symbol: string;
@@ -56,12 +56,16 @@ export interface PriceData {
   };
 }
 
+export interface RouteParams {
+  coinId: string;
+}
+
 export const isDarkAtom = atom({
   key: "isDark",
   default: false,
 });
 
-export const coinDetailState = atom<ICoinDetail[]>({
+export const coinDetail = atom<ICoinDetail[]>({
   key: "coinDetail",
   default: [],
 });
