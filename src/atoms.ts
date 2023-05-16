@@ -56,7 +56,7 @@ export interface PriceData {
   };
 }
 
-export const darkModeState = atom({
+export const isDarkAtom = atom({
   key: "isDark",
   default: false,
 });
